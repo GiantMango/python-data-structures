@@ -4,7 +4,7 @@ class Node:
         self.next = next
 
     def __str__(self):
-        return "ListNode {val: " + str(self.val) + ", next: " + str(self.next) + "}"
+        return "ListNode {val: " + str(self.value) + ", next: " + str(self.next) + "}"
 
 
 class LinkedList:
