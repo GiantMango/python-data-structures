@@ -106,13 +106,17 @@ class LinkedList:
         self.size += 1
 
     def reverse(self):
+        self.tail = self.head
+        prev = None
         current = self.head
-        prev = current.next
-        while prev:
-            self.head = prev.next
-            prev.next = current
-            current = self.head
-            prev = current.next
+
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+
+        self.head = prev
 
     def contains(self, value):
         return value in self
@@ -141,10 +145,3 @@ class LinkedList:
             current = current.next
         values.append("None")
         return " -> ".join(values)
-
-
-lss = LinkedList()
-lss.add_last(10)
-lss.add_last(20)
-lss.add_last(30)
-print(lss)
