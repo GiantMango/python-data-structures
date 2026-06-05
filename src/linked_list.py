@@ -4,7 +4,7 @@ class Node:
         self.next = next
 
     def __str__(self):
-        return f"Node({str(self.value)})"
+        return "ListNode {val: " + str(self.val) + ", next: " + str(self.next) + "}"
 
 
 class LinkedList:
@@ -13,7 +13,7 @@ class LinkedList:
         self.tail = None
         self.size = 0
 
-    def add(self, value):
+    def add_last(self, value):
         new_node = Node(value, None)
 
         if self.size == 0:
@@ -24,7 +24,7 @@ class LinkedList:
             self.tail = new_node
         self.size += 1
 
-    def prepend(self, value):
+    def add_first(self, value):
         new_node = Node(value, self.head)
         self.head = new_node
         self.size += 1
@@ -84,7 +84,7 @@ class LinkedList:
             i += 1
         return -1
 
-    def get(self, ind):
+    def get_value(self, ind):
         current = self.head
         if ind >= self.size:
             raise IndexError("index out of range")
@@ -104,6 +104,15 @@ class LinkedList:
         old_next = current.next
         current.next = Node(value, old_next)
         self.size += 1
+
+    def reverse(self):
+        current = self.head
+        prev = current.next
+        while prev:
+            self.head = prev.next
+            prev.next = current
+            current = self.head
+            prev = current.next
 
     def contains(self, value):
         return value in self
@@ -132,3 +141,10 @@ class LinkedList:
             current = current.next
         values.append("None")
         return " -> ".join(values)
+
+
+lss = LinkedList()
+lss.add_last(10)
+lss.add_last(20)
+lss.add_last(30)
+print(lss)
