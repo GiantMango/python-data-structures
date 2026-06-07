@@ -26,9 +26,9 @@ class Stack:
         self.size -= 1
         return removed
 
-    def peek(self):
+    def get_top(self):
         if self.size == 0:
-            raise IndexError("peek from empty stack")
+            raise IndexError("Stack is empty")
         return self.top.value
 
     def is_empty(self):
