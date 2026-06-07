@@ -26,8 +26,12 @@ class Queue:
     def dequeue(self):
         if self.size == 0:
             raise IndexError("Queue is empty.")
+        removed = self.front
         self.front = self.front.next
         self.size -= 1
+        if self.size == 0:
+            self.rear = None
+        return removed
 
     def get_front(self):
         if self.size == 0:
@@ -74,19 +78,8 @@ class Queue:
 
 
 q = Queue()
-print("dequeue empty: ", q.dequeue())
-
 q.enqueue(10)
-q.enqueue(20)
-q.enqueue(30)
-q.enqueue(40)
-print("enqueue: ", q)
-
 q.dequeue()
-print("dequeue: ", q)
-
-print("front: ", q.get_front())
-print("rear: ", q.get_rear())
-print("length: ", len(q))
-print("contains 15: ", 15 in q)
-print("contains 20: ", 20 in q)
+q.enqueue(30)
+q.enqueue(44)
+print(q)
