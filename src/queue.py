@@ -24,12 +24,14 @@ class Queue:
         self.size += 1
 
     def dequeue(self):
+        if self.size == 0:
+            raise IndexError("Queue is empty.")
         self.front = self.front.next
         self.size -= 1
 
     def get_front(self):
         if self.size == 0:
-            raise IndexError("Queue is empty")
+            raise IndexError("Queue is empty.")
         return self.front
 
     def get_rear(self):
@@ -72,7 +74,7 @@ class Queue:
 
 
 q = Queue()
-print("dequeue empty: ", q)
+print("dequeue empty: ", q.dequeue())
 
 q.enqueue(10)
 q.enqueue(20)
