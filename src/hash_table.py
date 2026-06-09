@@ -24,22 +24,38 @@ class HashTable:
         raise KeyError(f"{key} not in hast table")
 
     def remove(self, key):
-        # index = self.__hash_function(key)
-        # if key == self.bucket[index][1]:
-        #     removed =
-        pass
+        index = self.__hash_function(key)
+        for ind, item in enumerate(self.buckets[index]):
+            if item[0] == key:
+                self.buckets[index].pop(ind)
 
     def contains_key(self, key):
-        pass
+        return self.__contains__(key)
 
     def keys(self):
-        pass
+        re = []
+        for bucket in self.buckets:
+            for x in bucket:
+                re.append(x[0])
+        return re
 
     def values(self):
-        pass
+        re = []
+        for bucket in self.buckets:
+            for x in bucket:
+                re.append(x[1])
+        return re
 
     def items(self):
-        pass
+        re = []
+        for bucket in self.buckets:
+            for x in bucket:
+                re.append(x)
+        return re
+
+    def __contains__(self, key):
+        index = self.__hash_function(key)
+        return key in [x[0] for x in self.buckets[index]]
 
     def __len__(self):
         return self.size
@@ -60,5 +76,7 @@ if __name__ == "__main__":
     ht.put("age", 29)
     ht.put("gae", 300)
     print(ht)
-    ht.put("name", "Kevin")
-    print("new hash table:\n", ht)
+    print(ht.keys())
+    print(ht.values())
+    print(ht.items())
+    print(len(ht))
