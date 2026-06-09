@@ -8,6 +8,8 @@ Binary Search Tree (BST)
 Smaller values on the left, larger values on the right
 """
 
+from queue import Queue
+
 
 class Node:
     def __init__(self, value):
@@ -114,7 +116,23 @@ class BinarySearchTree:
         """
         Breadth-first search
         """
-        raise NotImplementedError
+        queue = Queue()
+        re = []
+        if self.root is None:
+            return re
+
+        queue.enqueue(self.root)
+
+        while len(queue) != 0:
+            parent = queue.get_front()
+            re.append(parent.value)
+            if parent.left is not None:
+                queue.enqueue(parent.left)
+            if parent.right is not None:
+                queue.enqueue(parent.right)
+            queue.dequeue()
+
+        return re
 
     def find_min(self):
         if self.size == 0:
@@ -185,3 +203,4 @@ if __name__ == "__main__":
     print(bst.in_order_traversal())
     print(bst.pre_order_traversal())
     print(bst.post_order_traversal())
+    print(bst.level_order_traversal())
