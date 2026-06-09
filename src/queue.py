@@ -31,17 +31,17 @@ class Queue:
         self.size -= 1
         if self.size == 0:
             self.rear = None
-        return removed
+        return removed.value
 
     def get_front(self):
         if self.size == 0:
             raise IndexError("Queue is empty.")
-        return self.front
+        return self.front.value
 
     def get_rear(self):
         if self.size == 0:
             raise IndexError("Queue is empty")
-        return self.rear
+        return self.rear.value
 
     def is_empty(self):
         return self.size == 0
