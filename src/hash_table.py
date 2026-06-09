@@ -25,14 +25,12 @@ class HashTable:
 
     def remove(self, key):
         index = self.__hash_function(key)
-        removed = None
         for i, item in enumerate(self.buckets[index]):
             if item[0] == key:
                 removed = self.buckets[index].pop(i)
                 self.size -= 1
-        if not removed:
-            raise KeyError(key)
-        return removed
+                return removed[1]
+        raise KeyError(key)
 
     def keys(self):
         re = []
