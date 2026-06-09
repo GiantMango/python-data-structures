@@ -29,9 +29,6 @@ class HashTable:
             if item[0] == key:
                 self.buckets[index].pop(ind)
 
-    def contains_key(self, key):
-        return self.__contains__(key)
-
     def keys(self):
         re = []
         for bucket in self.buckets:
@@ -52,6 +49,9 @@ class HashTable:
             for x in bucket:
                 re.append(x)
         return re
+
+    def contains(self, key):
+        return self.__contains__(key)
 
     def __contains__(self, key):
         index = self.__hash_function(key)
