@@ -16,7 +16,7 @@ class Node:
         self.right = None
 
     def __str__(self):
-        return f"Node: {self.value}"
+        return self.value
 
 
 class BinarySearchTree:
@@ -65,22 +65,50 @@ class BinarySearchTree:
         Depth-first search: Left -> Root -> Right
         """
         re = []
-        current = self.root
-        for _ in range(self.size):
-            while not self._is_leaf(current):
-                currne.t
+
+        def traversal(node):
+            if node is None:
+                return
+
+            traversal(node.left)
+            re.append(node.value)
+            traversal(node.right)
+
+        traversal(self.root)
+
+        return re
 
     def pre_order_traversal(self):
         """
         Depth-first search: Root -> Left -> Right
         """
-        raise NotImplementedError
+        re = []
+
+        def traversal(node):
+            if node is None:
+                return
+            re.append(node.value)
+            traversal(node.left)
+            traversal(node.right)
+
+        traversal(self.root)
+        return re
 
     def post_order_traversal(self):
         """
         Depth-first search: Left -> Right -> Root
         """
-        raise NotImplementedError
+        re = []
+
+        def traversal(node):
+            if node is None:
+                return
+            traversal(node.left)
+            traversal(node.right)
+            re.append(node.value)
+
+        traversal(self.root)
+        return re
 
     def level_order_traversal(self):
         """
@@ -150,7 +178,10 @@ if __name__ == "__main__":
     bst.insert(15)
     bst.insert(3)
     bst.insert(7)
+    bst.insert(12)
+    bst.insert(20)
+    bst.insert(8)
 
-    print(bst.find_min())  # 3
-    print(bst.find_max())  # 15
-    print(bst.root)
+    print(bst.in_order_traversal())
+    print(bst.pre_order_traversal())
+    print(bst.post_order_traversal())
