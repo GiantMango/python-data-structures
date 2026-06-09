@@ -25,9 +25,14 @@ class HashTable:
 
     def remove(self, key):
         index = self.__hash_function(key)
-        for ind, item in enumerate(self.buckets[index]):
+        removed = None
+        for i, item in enumerate(self.buckets[index]):
             if item[0] == key:
-                self.buckets[index].pop(ind)
+                removed = self.buckets[index].pop(i)
+                self.size -= 1
+        if not removed:
+            raise KeyError(key)
+        return removed
 
     def keys(self):
         re = []
@@ -76,7 +81,6 @@ if __name__ == "__main__":
     ht.put("age", 29)
     ht.put("gae", 300)
     print(ht)
-    print(ht.keys())
-    print(ht.values())
-    print(ht.items())
-    print(len(ht))
+    ht.remove("gae")
+    print(ht)
+    ht.remove("last")
