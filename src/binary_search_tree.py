@@ -165,15 +165,6 @@ class BinarySearchTree:
     def _height(self):
         raise NotImplementedError
 
-    def _is_leaf(self, node):
-        return node.left == node.right == None
-
-    def _has_child(self, node):
-        return node.left != node.right and (node.left is None or node.right is None)
-
-    def _has_children(self, node):
-        return node.left is not None and node.right is not None
-
     def __contains__(self, value):
         raise NotImplementedError
 
