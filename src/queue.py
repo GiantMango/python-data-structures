@@ -77,9 +77,10 @@ class Queue:
         return " -> ".join(values)
 
 
-q = Queue()
-q.enqueue(10)
-q.dequeue()
-q.enqueue(30)
-q.enqueue(44)
-print(q)
+if __name__ == "__main__":
+    q = Queue()
+    q.enqueue(10)
+    q.dequeue()
+    q.enqueue(30)
+    q.enqueue(44)
+    print(q)
